@@ -1,3 +1,4 @@
+
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 export interface Item {
@@ -24,6 +25,7 @@ interface CalculationContextType {
   editItem: (id: string, updatedItem: Partial<Omit<Item, 'id' | 'timestamp'>>) => void;
   clearItems: () => void;
   calculatePrice: (pricePerKg: number, quantity: number) => number;
+  calculateWeight: (pricePerKg: number, amount: number) => number;
   history: HistoryEntry[];
   saveToHistory: () => void;
   totalPrice: number;
@@ -99,12 +101,18 @@ export const CalculationProvider: React.FC<{ children: React.ReactNode }> = ({ c
     return Math.round(price);
   };
   
+  const calculateWeight = (pricePerKg: number, amount: number): number => {
+    // Convert amount to weight in grams/ml
+    const weight = (amount / pricePerKg) * 1000;
+    return Math.round(weight);
+  };
+  
   const addItem = (item: Omit<Item, 'id' | 'timestamp'>) => {
     const newItem: Item = {
       ...item,
       id: Date.now().toString(),
       timestamp: new Date(),
-      totalPrice: calculatePrice(item.pricePerKg, item.quantity)
+      totalPrice: item.totalPrice
     };
     
     setCurrentItems(prev => [...prev, newItem]);
@@ -170,6 +178,7 @@ export const CalculationProvider: React.FC<{ children: React.ReactNode }> = ({ c
     editItem,
     clearItems,
     calculatePrice,
+    calculateWeight,
     history,
     saveToHistory,
     totalPrice
