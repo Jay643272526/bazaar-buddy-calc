@@ -11,10 +11,10 @@ const Index = () => {
   const [showSplash, setShowSplash] = useState(true);
   
   useEffect(() => {
-    // Show splash screen for 2 seconds
+    // Show splash screen for 5 seconds
     const timer = setTimeout(() => {
       setShowSplash(false);
-    }, 2000);
+    }, 5000);
     
     return () => clearTimeout(timer);
   }, []);
