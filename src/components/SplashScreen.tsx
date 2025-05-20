@@ -1,12 +1,15 @@
 
 import React from 'react';
-import { Calculator } from 'lucide-react';
 
 const SplashScreen = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-white">
-      <div className="w-20 h-20 flex items-center justify-center bg-bazaar-500 rounded-lg shadow-lg mb-6">
-        <Calculator size={48} className="text-white" />
+      <div className="w-40 h-40 flex items-center justify-center mb-6">
+        <img 
+          src="/lovable-uploads/de767c39-c688-4309-99bd-3a7979498e6b.png" 
+          alt="BazaarBuddy Logo" 
+          className="w-full h-full object-contain"
+        />
       </div>
       <h1 className="text-3xl font-bold mb-1 text-bazaar-600">BazaarBuddy</h1>
       <p className="text-lg text-bazaar-500 mb-2">Price & Weight Calculator</p>
