@@ -1,6 +1,7 @@
 
 import React, { ReactNode, useState } from 'react';
 import { Calculator, ListChecks, Clock } from 'lucide-react';
+import AdBanner from './AdBanner';
 
 interface LayoutProps {
   calculatorContent: ReactNode;
@@ -13,8 +14,13 @@ type TabType = 'calculator' | 'itemList' | 'history';
 const Layout = ({ calculatorContent, itemListContent, historyContent }: LayoutProps) => {
   const [activeTab, setActiveTab] = useState<TabType>('calculator');
   
+  // AdMob ID from the user
+  const adMobId = "2630066452533764/9313704030";
+  
   return (
     <div className="app-container">
+      <AdBanner adId={adMobId} />
+      
       <div className="content-container">
         {activeTab === 'calculator' && calculatorContent}
         {activeTab === 'itemList' && itemListContent}
